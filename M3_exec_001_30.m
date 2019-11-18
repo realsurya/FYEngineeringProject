@@ -4,7 +4,8 @@ function [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
 % Program Description 
 % this executive funciton will use the algorithm to produce product 
 % reaction velocity plots. Exec Will automatically calculate parameters
-% vmax and km using the calculated values from the algorithm.
+% vmax and km using the calculated values from the algorithm. Finally,
+% the SSE values are calculated between the ideal and expected curve.
 %
 % Function Call
 % [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
