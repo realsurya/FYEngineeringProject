@@ -11,7 +11,7 @@ function [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
 % [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
 %
 % Input Arguments
-% None
+% N/A
 %
 % Output Arguments
 % vMaxArray - the array containing unique vmax values for the 5 enzymes
