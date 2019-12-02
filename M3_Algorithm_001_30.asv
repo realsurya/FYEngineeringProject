@@ -68,11 +68,8 @@ passWidth = 17; % width for the moving average smoothing function
 % v0ValsTest = []; % initialize v0s to void array to begin (for orig test)
 % v0ValsDupe = []; % initialize v0s to void array to begin (for dupe test)
 
-% [Change - Previously, the array was not preallocated with zeros, which causes
-% significant performance losses when adding elaments to the array. Therefore,
-% we are preallocating the arays with zeros to increase performance]
-v0ValsTest = zeros();
-v0ValsDupe = zeros();
+v0ValsTest = zeros(10);
+v0ValsDupe = zeros(10);
 
 for product = 0:9
     
@@ -90,15 +87,8 @@ for product = 0:9
     % Original test
     [timeArray, dataArray] = M3_Smooth_001_30(testData, timeAxis, passWidth);
    
-    % Change - Instead of using rise/run with the first 2 points to find
-    % v0, we will find the slope of the first 3 data points instead. Therefore,
-    % the eror in the first two data points is not compounded
-    
-    %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
-    timeArray = timeArray(1:3);
-    dataArray = dataArray(1:3);
-    v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value   
-    
+    % use rise/run to find the first slope value which is our v0 val
+    v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
     %v0ValsTest = [v0ValsTest, v0]; 
     v0ValsTest(product + 1) = v0;
 
@@ -106,13 +96,8 @@ for product = 0:9
     [timeArray, dataArray] = M3_Smooth_001_30(dupeData, timeAxis, passWidth);
    
     % use rise/run to find the first slope value which is our v0 val
-    %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
-    timeArray = timeArray(1:3);
-    dataArray = dataArray(1:3);
-    v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value
-    
-    %v0ValsDupe = [v0ValsDupe, v0];
-    v0ValsDupe(product + 1) = v0;
+    v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
+    v0ValsDupe = [v0ValsDupe, v0];
     
 end
 

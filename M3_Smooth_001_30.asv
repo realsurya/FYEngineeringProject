@@ -65,13 +65,8 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 % smoothedData = []; 
 % truncatedTime = [];
 
-% [Change - Previously, the array was not preallocated with zeros, which causes
-% significant performance losses when adding elaments to the array. Therefore,
-% we are preallocating the arays with zeros to increase performance]
-smoothedData = zeros(); 
-truncatedTime = zeros();
-
-arrayindex = 1; % will keep track of the array index
+smoothedData = zeros(ciel(length(dataArray) / segmentWidth)); 
+truncatedTime = [];
 
 for index = 1:segmentWidth:(length(dataArray) - segmentWidth)
     
@@ -87,17 +82,10 @@ for index = 1:segmentWidth:(length(dataArray) - segmentWidth)
     avgDataSegment = sumDataSegment / (segmentWidth + 1); 
     avgTimeSegment = sunTimeSegment / (segmentWidth + 1);
     
-    % [Change - Previously, we added the element to the end of the array using 
-    % concatenation, which is not effecient. Now using indexes instead for direct adding of elements]
-   
-    % add the averaged value to the smoothed array
-    %smoothedData = [smoothedData, avgDataSegment];  
-    %truncatedTime = [truncatedTime, avgTimeSegment];
+    % add the averaged val to final output
+    smoothedData = [smoothedData, avgDataSegment]; 
+    truncatedTime = [truncatedTime, avgTimeSegment];
     
-    smoothedData(arrayindex) = avgDataSegment;
-    truncatedTime(arrayindex) = avgTimeSegment;
-    
-    arrayindex = arrayindex + 1; % increment the index of the array
 end
 
 %% ____________________

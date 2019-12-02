@@ -72,6 +72,11 @@ for enzymeNum = 1:5 % loop through all enzymes
     idealV = (vMax .* sData) ./ (kM + sData); % calculate ideal v0 vals using Michaelis-Menten equation
     SSE = sum((idealV - v0Vals) .^ 2);
     
+    % display the values to the command window
+    fprintf("----------------------------------------------\n");
+    fprintf("Statistics for Enzyme NextGen-%c\n", 'A' + (enzymeNum-1))
+    fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f\n", vMax, kM, SSE);
+    
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
     %Add params to the output variables [Change - executive function no longer has parameters, this step is unnecessary]
     %vMaxArray = [vMaxArray, vMax];
