@@ -97,9 +97,8 @@ for enzymeNum = 1:5 % loop through all enzymes
     %grid on
     %hold on
     % overlay the ideal reaction velocity vector
-    plot(sData, idealV, "-b");
-    legend("Raw Reaction Velocity", "Michaelis-Menten Expected Vector", "location", "south");
-    hold off
+    %plot(sData, idealV, "-b");
+    %legend("Raw Reaction Velocity", "Michaelis-Menten Expected Vector", "location", "south");
  
     
     % Next, plot the linearized data according to Hanes-Wolf method
