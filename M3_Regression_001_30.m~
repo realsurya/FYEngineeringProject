@@ -148,7 +148,7 @@ elseif choose == 4 % if the power logarithmic best fits the data
 end
 %% ____________________
 %% COMMAND WINDOW OUTPUT
-fprintf("The chosen model is Exponential funciton: %.3f * 10 ^ (%.3f * Km)\nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2); 
+fprintf("The chosen model is Exponential funciton: %.3f * 10 ^ (%.3f * Km)\n SSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3); 
 %% ____________________
 %% ACADEMIC INTEGRITY STATEMENT
 % We have not used source code obtained from any other unauthorized
