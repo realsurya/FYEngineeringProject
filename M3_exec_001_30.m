@@ -3,10 +3,12 @@ tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132
 % Program Description 
-% this executive funciton will use the algorithm to produce product 
-% reaction velocity plots. Exec Will automatically calculate parameters
-% vmax and km using the calculated values from the algorithm. Finally,
-% the SSE values are calculated between the ideal and expected curve.
+% this executive funciton will use the algorithm to automatically calculate
+% vmax and km parameters for each enzyme using the v0 calculated values from 
+% the algorithm. Finally, the SSE values are calculated between the ideal 
+% and expected Michales-menten curve in order to judge goodness of fit.
+% Note: changed or depreciated code is commented as such. New or unmodified 
+% code will remain uncommented.
 %
 % Function Call
 % M3_exec_001_30();
@@ -53,7 +55,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     % compute [S] for reaction velocity plots
     sData = substrateData(sColumn : sColumn + 9);
     
-    % linearize [S] and v values for the linear regression.
+    % linearize [S] and v values for the linear regression through Hanes-Wolf Method (explanation can be found in M2 exec function)
     linearSData = sData; % [s] vals do not need transformation to be linear
     linearV0Array = linearSData ./ v0Vals;
     

@@ -5,16 +5,18 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 % This user-defined functin will use the moving average method to smooth
 % an array of data and return the smoothed array back to the calling
 % function. Averages are done sequentially with the width given by user.
+% Note: changed or depreciated code is commented as such. New or unmodified 
+% code will remain uncommented.
 %
 % Function Call
 % [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, passWidth);
 %
 % Input Arguments
-% dataArray - a one dimensional array containing the data for the product
-%             conc. data of an enzyme at a given substrate conc. value.
-% timeArray - the time data array. Will be returned at an appropriate length.
-% passWidth - the width the function will use to calculate the moving
-%             average. Must be an integer > 0 or error will be thrown.
+% dataArray -    a one dimensional array containing the data for the product
+%                conc. data of an enzyme at a given substrate conc. value.
+% timeArray -    the time data array. Will be returned at an appropriate length.
+% segmentWidth - the width the function will use to calculate the moving
+%                average.
 %
 % Output Arguments
 % truncatedTime - the array of the time elements corresponding to smoothed

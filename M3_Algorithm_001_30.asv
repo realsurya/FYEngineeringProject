@@ -110,7 +110,6 @@ for product = 0:9
    
     % use rise/run to find the first slope value which is our v0 val
     %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
-    
     timeArray = timeArray(1:3);
     dataArray = dataArray(1:3);
     v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value
