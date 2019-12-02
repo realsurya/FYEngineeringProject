@@ -39,6 +39,11 @@ function v0Vals = M3_Algorithm_001_30(enzNum);
 % the values for enzyme number parameter is set properly, we have no need
 % for input validation
 
+% Category 2 - By removing the unnecessary input validation step, the
+% program runtime is shortened due to the reduction of CPU cycles spent on
+% comparisons. However, this means we will need to be more
+% careful and ensure proper parameter passes when using this function
+
 % inval = 0; % this flag value will hold whether or not any of the params are invalid
 
 % if((floor(enzNum) ~= enzNum) | (enzNum > 5) | (enzNum < 0)) % check if width is a positive integer
@@ -71,7 +76,7 @@ passWidth = 17; % width for the moving average smoothing function
 % v0ValsTest = []; % initialize v0s to void array to begin (for orig test)
 % v0ValsDupe = []; % initialize v0s to void array to begin (for dupe test)
 
-% [Change - Previously, the array was not preallocated with zeros, which causes
+% [Category 2 Change - Previously, the array was not preallocated with zeros, which causes
 % significant performance losses when adding elaments to the array. Therefore,
 % we are preallocating the arays with zeros to increase performance]
 v0ValsTest = zeros();
@@ -103,7 +108,7 @@ for product = 0:9
     v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value   
     
     %v0ValsTest = [v0ValsTest, v0]; 
-    v0ValsTest(product + 1) = v0;
+    v0ValsTest(product + 1) = v0; % fit new array scheme (use direct assignment)
 
     % Duplicate test
     [timeArray, dataArray] = M3_Smooth_001_30(dupeData, timeAxis, passWidth);
@@ -116,7 +121,7 @@ for product = 0:9
     v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value
     
     %v0ValsDupe = [v0ValsDupe, v0];
-    v0ValsDupe(product + 1) = v0;
+    v0ValsDupe(product + 1) = v0; % fit new array scheme (use direct assignment)
     
 end
 

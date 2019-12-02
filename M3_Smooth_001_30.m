@@ -42,7 +42,12 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
 % CHANGE: Input validation has been removed as Smooth is not meant to be used
 % by other users and is only implemented in the algorithm. Since
-% the values for width parameter is set properly, we have no need
+% the values for width parameter is set properly, we have no need for this.
+
+% Category 2 - By removing the unnecessary input validation step, the
+% program runtime is shortened due to the reduction of CPU cycles spent on
+% comparisons. However, this means we will need to be more
+% careful and ensure proper parameter passes when using this function
 
 % for input validation
 % inval = 0; % this flag value will hold whether or not any of the params are invalid
@@ -67,7 +72,7 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 % smoothedData = []; 
 % truncatedTime = [];
 
-% [Change - Previously, the array was not preallocated with zeros, which causes
+% [Category 2 Change - Previously, the array was not preallocated with zeros, which causes
 % significant performance losses when adding elaments to the array. Therefore,
 % we are preallocating the arays with zeros to increase performance]
 smoothedData = zeros(); 
@@ -89,7 +94,7 @@ for index = 1:segmentWidth:(length(dataArray) - segmentWidth)
     avgDataSegment = sumDataSegment / (segmentWidth + 1); 
     avgTimeSegment = sunTimeSegment / (segmentWidth + 1);
     
-    % [Change - Previously, we added the element to the end of the array using 
+    % [Category 2 Change - Previously, we added the element to the end of the array using 
     % concatenation, which is not effecient. Now using indexes instead for direct adding of elements]
    
     % add the averaged value to the smoothed array

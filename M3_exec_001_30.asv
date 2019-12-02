@@ -40,7 +40,7 @@ fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 % import the [S] values used to produce the plots
 %substrateData = readmatrix(fileName, "range", "B3:CW3"); [Change - xlsread is significantly faster than readatrix]
-% Category 2 - using xlsread for small data imports saves time as readmatrix is only good at large dataset imports 
+% Category 2 - 
 substrateData = xlsread(fileName, "B3:CW3");
 
 %% ____________________
