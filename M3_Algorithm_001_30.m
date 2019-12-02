@@ -95,22 +95,25 @@ for product = 0:9
     % Find v0 values for original test and duplicate seperately. Then,
     % average those v0 values to get the final result.
     
-    % Original test
+    % __________ Original test __________
     [timeArray, dataArray] = M3_Smooth_001_30(testData, timeAxis, passWidth);
    
-    % Change - Instead of using rise/run with the first 2 points to find
+    % Category 1 general Change - Instead of using rise/run with the first 2 points to find
     % v0, we will find the slope of the first 3 data points instead. Therefore,
-    % the eror in the first two data points is not compounded
+    % the error in the first two data points is not compounded
     %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
     
     timeArray = timeArray(1:3);
     dataArray = dataArray(1:3);
     v0 = timeArray(:) \ dataArray(:); % find slope, which is equal to v0 value   
     
+    % [Category 2 Change - Previously, we added the element to the end of the array using 
+    % concatenation, which is not effecient. Now using indexes instead for direct adding of v0 values where needed]
     %v0ValsTest = [v0ValsTest, v0]; 
-    v0ValsTest(product + 1) = v0; % fit new array scheme (use direct assignment)
+    v0ValsTest(product + 1) = v0; % Category 1 general change - fit new array scheme (use direct assignment)
 
-    % Duplicate test
+    % __________ Duplicate test __________
+    % NOTE: changes implemented here are identical to original test changes
     [timeArray, dataArray] = M3_Smooth_001_30(dupeData, timeAxis, passWidth);
    
     % use rise/run to find the first slope value which is our v0 val

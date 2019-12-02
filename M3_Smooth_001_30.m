@@ -68,7 +68,8 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 %% ____________________
 %% CALCULATIONS
 
-% initialize parameters needing output
+% Category 1 housekeeping change - parameters do not need to be initialized
+% void anymore as we will do that later with the zeros function
 % smoothedData = []; 
 % truncatedTime = [];
 
@@ -101,6 +102,7 @@ for index = 1:segmentWidth:(length(dataArray) - segmentWidth)
     %smoothedData = [smoothedData, avgDataSegment];  
     %truncatedTime = [truncatedTime, avgTimeSegment];
     
+    % Category 1 general change - fit new array scheme (direct assignment)
     smoothedData(arrayindex) = avgDataSegment;
     truncatedTime(arrayindex) = avgTimeSegment;
     

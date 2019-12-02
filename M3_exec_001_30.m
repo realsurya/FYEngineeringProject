@@ -34,7 +34,7 @@ tic
 %% ____________________
 %% INITIALIZATION
 
-% figureNumber = 1; % holds the number of the figure window being plotted [Change - no need to keep track of figure windows anymore as all plots have been eliminated]
+% figureNumber = 1; % holds the number of the figure window being plotted [Category 1 housekeeping Change - no need to keep track of figure windows anymore as all plots have been eliminated]
 
 fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
@@ -81,12 +81,12 @@ for enzymeNum = 1:5 % loop through all enzymes
     fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f\n", vMax, kM, SSE);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
-    % Add params to the output variables [Change - executive function no longer has parameters, this step is unnecessary]
+    % Add params to the output variables [Category 1 housekeeping Change - executive function no longer has parameters, this step is unnecessary]
     % vMaxArray = [vMaxArray, vMax];
     % kSubMArray = [kSubMArray, kM];
     % sseArray = [sseArray, SSE];
     
-    % [Change - eliminate all plots because it is not necessary for assignment and provides a huge speed boost]
+    % [Category 1 housekeepig Change - eliminate all plots because it is not necessary for this assignment and provides a large speed boost (Category 2)]
     % figure displays
     % figure(figureNumber);
     
