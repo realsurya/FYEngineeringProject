@@ -12,8 +12,8 @@ function [SSE_final, SST] = M3_Regression_001_30
 % No input argument
 %
 % Output Arguments
-% SSE_final: the SSE value of the linearized data
-% SST: the SST value of the linearized data
+% SSE_final: the SSE value of the linearized data (unitless)
+% SST: the SST value of the linearized data (unitless)
 %
 % Assignment Information
 %   Assignment:     M3
@@ -32,8 +32,8 @@ function [SSE_final, SST] = M3_Regression_001_30
 %% INITIALIZATION
 clc;clearvars;
 data = readmatrix('Data_NovelEnzymes_priceCatalog'); %import the data from the csv file
-price_measured = data(:,2); % separate the price from the data
-Km_measured = data(:,1); %separates the Km value from the data
+price_measured = data(:,2); % separate the price from the data (USD($)/lbs)
+Km_measured = data(:,1); %separates the Km value from the data (uM)
 
 %% ____________________
 %% Linearizing the data
