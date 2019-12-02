@@ -30,16 +30,19 @@ function v0Vals = M3_Algorithm_001_30(enzNum);
 %% ____________________
 %% INPUT VALIDATION
 
-inval = 0; % this flag value will hold whether or not any of the params are invalid
+% --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
+% CHANGE: Input validation has been removed as only we are 
 
-if((floor(enzNum) ~= enzNum) | (enzNum > 5) | (enzNum < 0)) % check if width is a positive integer
-    fprintf(2, "ERROR: enzNum parameter must be an integer between 1-5 inclusive\n");
-    inval = 1; % toggle flag
-end
+% inval = 0; % this flag value will hold whether or not any of the params are invalid
 
-if(inval) % quit if any parameter is invalid
-    return;
-end
+% if((floor(enzNum) ~= enzNum) | (enzNum > 5) | (enzNum < 0)) % check if width is a positive integer
+%    fprintf(2, "ERROR: enzNum parameter must be an integer between 1-5 inclusive\n");
+%    inval = 1; % toggle flag
+% end
+
+% if(inval) % quit if any parameter is invalid
+%    return;
+% end
 
 %% ____________________
 %% INITIALIZATION

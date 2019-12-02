@@ -1,4 +1,4 @@
-function M3_exec_001_30();
+function [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
 tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132
@@ -15,7 +15,10 @@ tic
 % N/A
 %
 % Output Arguments
-% N/A
+% vMaxArray - the array containing unique vmax values for the 5 enzymes
+% kSubMArray - the array containing unique km values for the 5 enzymes
+% sseArray - the array containing the SSE values for each enzyme compared
+% to the ideal michales-mitten curve.
 %
 % Assignment Information
 %   Assignment:     Milestone 3
@@ -32,7 +35,7 @@ tic
 %% ____________________
 %% INITIALIZATION
 
-% figureNumber = 1; % holds the number of the figure window being plotted [Change - no need to keep track of figure windows anymore as all plots have been eliminated]
+% figureNumber = 1; % holds the number of the figure window being plotted [Change - no need to keep track of figure windoe anymore]
 
 fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
@@ -72,7 +75,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     idealV = (vMax .* sData) ./ (kM + sData); % calculate ideal v0 vals using Michaelis-Menten equation
     SSE = sum((idealV - v0Vals) .^ 2);
     
-    % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
+    % --- ALL CODE BELOW IS DEPRECIATED ---
     %Add params to the output variables [Change - executive function no longer has parameters, this step is unnecessary]
     %vMaxArray = [vMaxArray, vMax];
     %kSubMArray = [kSubMArray, kM];
