@@ -74,7 +74,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     
     % display the values to the command window
     fprintf("----------------------------------------------\n");
-    fprintf("Statistics for Enzyme NextGen-%c\n", 'A' + (enzymeNum-1))
+    fprintf("Parameters for Enzyme NextGen-%c\n", 'A' + (enzymeNum-1))
     fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f\n", vMax, kM, SSE);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
