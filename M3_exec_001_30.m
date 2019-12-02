@@ -34,7 +34,7 @@ tic
 %% ____________________
 %% INITIALIZATION
 
-% figureNumber = 1; % holds the number of the figure window being plotted [Category 1 housekeeping Change - no need to keep track of figure windows anymore as all plots have been eliminated]
+% figureNumber = 1; % holds the number of the figure window being plotted [General Change - no need to keep track of figure windows anymore as all plots have been eliminated]
 
 fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
@@ -68,6 +68,11 @@ for enzymeNum = 1:5 % loop through all enzymes
     linearYIntercept = linearCoeffs(2);
     
     % calc Vmax and Km values through the Hanes-Wolf Method (explanation can be found in M2 exec function)
+    % Category 1 change - In the previous M2 submission, kM was calculated
+    % through the use of the y-intercept value, which was equal to vmax/km.
+    % However, using this method to solve for the kM means that any errors
+    % in the vmax calculation will compund over to the kM calculation.
+    % Therefore, we now based our calculations off the x intercept.
     vMax = 1 / linearSlope;
     kM = linearYIntercept / linearSlope;
     
@@ -81,12 +86,12 @@ for enzymeNum = 1:5 % loop through all enzymes
     fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f\n", vMax, kM, SSE);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
-    % Add params to the output variables [Category 1 housekeeping Change - executive function no longer has parameters, this step is unnecessary]
+    % Add params to the output variables [General Change - executive function no longer has parameters, this step is unnecessary]
     % vMaxArray = [vMaxArray, vMax];
     % kSubMArray = [kSubMArray, kM];
     % sseArray = [sseArray, SSE];
     
-    % [Category 1 housekeepig Change - eliminate all plots because it is not necessary for this assignment and provides a large speed boost (Category 2)]
+    % [General Change - eliminate all plots because it is not necessary for this assignment and provides a large speed boost (Category 2)]
     % figure displays
     % figure(figureNumber);
     
