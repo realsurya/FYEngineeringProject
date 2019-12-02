@@ -1,6 +1,7 @@
 function [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
+tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ENGR 132 
+% ENGR 132
 % Program Description 
 % this executive funciton will use the algorithm to produce product 
 % reaction velocity plots. Exec Will automatically calculate parameters
@@ -39,7 +40,8 @@ figureNumber = 1; % humds the number of the fugure window being plotted on
 fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 % import the [S] values used to produce the plots
-substrateData = readmatrix(fileName, "range", "B3:CW3");
+%substrateData = readmatrix(fileName, "range", "B3:CW3"); [Change - xlsread is significantly faster than readatrix]
+substrateData = xlsread(fileName, "B3:CW3");
 
 %% ____________________
 %% CALCULATIONS & FIGURE DISPLAYS
@@ -133,5 +135,6 @@ end
 % source, either modified or unmodified. Neither have we provided
 % access to my code to another. The function we are submitting
 % is our own original work.
+toc
 end
 
