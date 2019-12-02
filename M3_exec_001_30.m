@@ -66,7 +66,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     
     % calc Vmax and Km values through the Hanes-Wolf Method (explanation can be found in M2 exec function)
     vMax = 1 / linearSlope;
-    kM = linearYIntercept * vMax;
+    kM = linearYIntercept / linearSlope;
     
     % calculate SSE values between expected and actual values for raw data
     idealV = (vMax .* sData) ./ (kM + sData); % calculate ideal v0 vals using Michaelis-Menten equation
