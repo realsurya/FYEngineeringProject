@@ -9,7 +9,7 @@ tic
 % the SSE values are calculated between the ideal and expected curve.
 %
 % Function Call
-% [vMaxArray, kSubMArray, sseArray] = M3_exec_001_30();
+% M3_exec_001_30();
 %
 % Input Arguments
 % N/A
@@ -86,16 +86,16 @@ for enzymeNum = 1:5 % loop through all enzymes
     sseArray = [sseArray, SSE];
     
     % figure displays
-    figure(figureNumber);
+    %figure(figureNumber);
     
     % First, plot the raw function output for reaction velocities
-    subplot(1, 2, 1);
-    plot(sData, v0Vals, 'ro');
-    xlabel("Substrate Concentration [S] (uM)");
-    ylabel("Reaction Velocity v (uM/min)");
-    title("Unaltered Data");
-    grid on
-    hold on
+    %subplot(1, 2, 1);
+    %plot(sData, v0Vals, 'ro');
+    %xlabel("Substrate Concentration [S] (uM)");
+    %ylabel("Reaction Velocity v (uM/min)");
+    %title("Unaltered Data");
+    %grid on
+    %hold on
     % overlay the ideal reaction velocity vector
     plot(sData, idealV, "-b");
     legend("Raw Reaction Velocity", "Michaelis-Menten Expected Vector", "location", "south");
@@ -103,22 +103,22 @@ for enzymeNum = 1:5 % loop through all enzymes
  
     
     % Next, plot the linearized data according to Hanes-Wolf method
-    subplot(1, 2, 2);
-    plot(linearSData, sData ./ v0Vals, 'ro');
-    xlabel("Linearized Substrate Concentration");
-    ylabel("Linearized Reaction Velocity");
-    title("Linearized Data");
-    grid on
-    hold on
+    %subplot(1, 2, 2);
+    %plot(linearSData, sData ./ v0Vals, 'ro');
+    %xlabel("Linearized Substrate Concentration");
+    %ylabel("Linearized Reaction Velocity");
+    %title("Linearized Data");
+    %grid on
+    %hold on
     % overlay the linear regression on to that line
-    plot(linearSData, (linearSlope * linearSData) + linearYIntercept, '-b');
-    legend("Linerized Reaction Velocity", "Hanes-Wolf Best Fit Line", "location", "north");
-    hold off
+    %plot(linearSData, (linearSlope * linearSData) + linearYIntercept, '-b');
+    %legend("Linerized Reaction Velocity", "Hanes-Wolf Best Fit Line", "location", "north");
+    %hold off
     
     % title the overall figure and increment figure number
-    figureTitle = sprintf("Reaction Velocity Plots for Enzyme %d (NextGen-%c)", enzymeNum, ('A' + (enzymeNum - 1)));
-    sgtitle(figureTitle);
-    figureNumber = figureNumber + 1;
+    %figureTitle = sprintf("Reaction Velocity Plots for Enzyme %d (NextGen-%c)", enzymeNum, ('A' + (enzymeNum - 1)));
+    %sgtitle(figureTitle);
+    %figureNumber = figureNumber + 1;
 
 end
 %% ____________________
@@ -137,4 +137,3 @@ end
 % is our own original work.
 toc
 end
-
