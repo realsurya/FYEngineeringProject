@@ -3,10 +3,12 @@ tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132
 % Program Description 
-% this executive funciton will use the algorithm to produce product 
-% reaction velocity plots. Exec Will automatically calculate parameters
-% vmax and km using the calculated values from the algorithm. Finally,
-% the SSE values are calculated between the ideal and expected curve.
+% this executive funciton will use the algorithm to automatically calculate
+% vmax and km parameters for each enzyme using the v0 calculated values from 
+% the algorithm. Finally, the SSE values are calculated between the ideal 
+% and expected Michales-menten curve in order to judge goodness of fit.
+% Note: changed or depreciated code is commented as such. New or unmodified 
+% code will remain uncommented.
 %
 % Function Call
 % M3_exec_001_30();
@@ -32,12 +34,13 @@ tic
 %% ____________________
 %% INITIALIZATION
 
-% figureNumber = 1; % holds the number of the figure window being plotted [Change - no need to keep track of figure windows anymore as all plots have been eliminated]
+% figureNumber = 1; % holds the number of the figure window being plotted [General Change - no need to keep track of figure windows anymore as all plots have been eliminated]
 
 fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 % import the [S] values used to produce the plots
 %substrateData = readmatrix(fileName, "range", "B3:CW3"); [Change - xlsread is significantly faster than readatrix]
+% Category 2 - using xlsread for small data imports saves time as readmatrix is only good at large dataset imports 
 substrateData = xlsread(fileName, "B3:CW3");
 
 %% ____________________
@@ -53,7 +56,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     % compute [S] for reaction velocity plots
     sData = substrateData(sColumn : sColumn + 9);
     
-    % linearize [S] and v values for the linear regression.
+    % linearize [S] and v values for the linear regression through Hanes-Wolf Method (explanation can be found in M2 exec function)
     linearSData = sData; % [s] vals do not need transformation to be linear
     linearV0Array = linearSData ./ v0Vals;
     
@@ -65,20 +68,30 @@ for enzymeNum = 1:5 % loop through all enzymes
     linearYIntercept = linearCoeffs(2);
     
     % calc Vmax and Km values through the Hanes-Wolf Method (explanation can be found in M2 exec function)
+    % Category 1 change - In the previous M2 submission, kM was calculated
+    % through the use of the y-intercept value, which was equal to vmax/km.
+    % However, using this method to solve for the kM means that any errors
+    % in the vmax calculation will compund over to the kM calculation.
+    % Therefore, we now based our calculations off the x intercept.
     vMax = 1 / linearSlope;
-    kM = linearYIntercept * vMax;
+    kM = linearYIntercept / linearSlope;
     
     % calculate SSE values between expected and actual values for raw data
     idealV = (vMax .* sData) ./ (kM + sData); % calculate ideal v0 vals using Michaelis-Menten equation
     SSE = sum((idealV - v0Vals) .^ 2);
     
-    % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
-    %Add params to the output variables [Change - executive function no longer has parameters, this step is unnecessary]
-    %vMaxArray = [vMaxArray, vMax];
-    %kSubMArray = [kSubMArray, kM];
-    %sseArray = [sseArray, SSE];
+    % display the values to the command window in a neat manner
+    fprintf("----------------------------------------------\n");
+    fprintf("Parameters for Enzyme NextGen-%c\n", 'A' + (enzymeNum-1))
+    fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f\n", vMax, kM, SSE);
     
-    % [Change - eliminate all plots because it is not necessary for assignment and provides a huge speed boost]
+    % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
+    % Add params to the output variables [General Change - executive function no longer has parameters, this step is unnecessary]
+    % vMaxArray = [vMaxArray, vMax];
+    % kSubMArray = [kSubMArray, kM];
+    % sseArray = [sseArray, SSE];
+    
+    % [General Change - eliminate all plots because it is not necessary for this assignment and provides a large speed boost (Category 2)]
     % figure displays
     % figure(figureNumber);
     

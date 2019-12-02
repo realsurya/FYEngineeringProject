@@ -100,11 +100,7 @@ for product = 0:9
    
     % Category 1 Change - In M2, we used the first two points in the
     % reaction velocity plot and used the rise/run equation to finf the
-    % vmax. However, we found that this does NOT create the best tangent
-    % line. Instead of only considering the first two points, which leaves
-    % room for erroe, we found that finding the linear regression of the
-    % first 3 points created a much better tangent line and therefore
-    % better vmax values.
+    % vmax. However, we found that this does NOT create the best tangent l
     %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
     
     timeArray = timeArray(1:3);
