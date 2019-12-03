@@ -46,8 +46,8 @@ substrateData = xlsread(fileName, "B3:CW3");
 %% ____________________
 %% USE REGRESSION ALGORITHM TO GET ENZYME FUNCTION
 
+fprintf("Function");
 [b, m, SSE, SST] = M3_Regression_001_30; % call regression function to get function constants
-fprintf("\n\n");
 
 %% ____________________
 %% CALCULATIONS OF MICHALES-MENTEN CONSTANTS & PRICE ENZYMES
@@ -91,8 +91,8 @@ for enzymeNum = 1:5 % loop through all enzymes
     
     % display the values to the command window in a neat manner
     fprintf("----------------------------------------------\n");
-    fprintf("Parameters for Enzyme NextGen-%c:\n", 'A' + (enzymeNum-1))
-    fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f \n\nRecommended Price: $%.2f per lb\n", vMax, kM, SSE, recPrice);
+    fprintf("Parameters for Enzyme NextGen-%c\n", 'A' + (enzymeNum-1))
+    fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f  |  Recommended Price: $%.2f\n", vMax, kM, SSE, recPrice);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
     % Add params to the output variables [General Change - executive function no longer has parameters, this step is unnecessary]

@@ -17,7 +17,7 @@ function v0Vals = M3_Algorithm_001_30(enzNum);
 %
 % Output Arguments
 % v0vals - an array containing all 10 v0 values for a given enzyme at each
-% substrate concentration
+% substrate concentration. (Units: uM/minute)
 %
 % Assignment Information
 %   Assignment:     Milestone 3, Algorithm
@@ -69,7 +69,7 @@ origColumn = 1 + (20 * (enzNum - 1));
 dupeColumn = 11 + (20 * (enzNum - 1));
 
 %% ____________________
-%% CALCULATIONS
+%% CALCULATIONS OF v0 VALUES
 
 passWidth = 17; % width for the moving average smoothing function
 
@@ -102,10 +102,10 @@ for product = 0:9
     % reaction velocity plot and used the rise/run equation to finf the
     % vmax. However, we found that this does NOT create the best tangent
     % line. Instead of only considering the first two points, which leaves
-    % room for erroe, we found that finding the linear regression of the
+    % room for error, we found that finding the linear regression of the
     % first 3 points created a much better tangent line and therefore
-    % better vmax values.
-    %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
+    % better vmax values. Comprehensive explanation located in M4 docs.
+    % v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
     
     timeArray = timeArray(1:3);
     dataArray = dataArray(1:3);
@@ -120,7 +120,7 @@ for product = 0:9
     % NOTE: changes implemented here are identical to original test changes
     [timeArray, dataArray] = M3_Smooth_001_30(dupeData, timeAxis, passWidth);
    
-    % use rise/run to find the first slope value which is our v0 val
+    % [OLD] use rise/run to find the first slope value which is our v0 val
     %v0 = (dataArray(2) - dataArray(1))/ (timeArray(2) - timeArray(1));
     
     timeArray = timeArray(1:3);
