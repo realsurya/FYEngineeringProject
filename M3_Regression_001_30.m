@@ -1,4 +1,4 @@
-%function [SSE_final, SST] = M3_Regression_001_30
+function [bf, mf, SSE_final, SST] = M3_Regression_001_30
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132 
 % Program Description 
@@ -12,6 +12,8 @@
 % No input argument
 %
 % Output Arguments
+% bf: the intercept value gathered from the regression (unitless)
+% mf: the slope value gathered from the regression (unitless)
 % SSE_final: the SSE value of the linearized data (unitless)
 % SST: the SST value of the linearized data (unitless)
 %
