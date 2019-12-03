@@ -81,7 +81,7 @@ truncatedTime = zeros();
 
 arrayindex = 1; % will keep track of the array index
 
-for index = 1:segmentWidth:(length(dataArray) - segmentWidth)
+for index = 1:ceil(segmentWidth/2):(length(dataArray) - segmentWidth)
     
     % isolate segment of width from dataset
     dataSegment = dataArray(index : index+segmentWidth);

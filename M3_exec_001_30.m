@@ -86,12 +86,13 @@ for enzymeNum = 1:5 % loop through all enzymes
     idealV = (vMax .* sData) ./ (kM + sData); % calculate ideal v0 vals using Michaelis-Menten equation
     SSE = sum((idealV - v0Vals) .^ 2);
     
-    % Price the enzyme
-    recPrice = b * 10^(-.004 * kM);
+    % Price the enzyme (exponential equation)
+    recPrice = b * 10^(m * kM);
     
     % display the values to the command window in a neat manner
     fprintf("----------------------------------------------\n");
-    fprintf("Parameters for Enzyme NextGen-%c:\n", 'A' + (enzymeNum-1))
+    fprintf("Parameters for Enzyme NextGen-%c:\n\nv0 values:", 'A' + (enzymeNum-1))
+    disp(v0Vals);
     fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f \n\nRecommended Price: $%.2f per lb\n", vMax, kM, SSE, recPrice);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---

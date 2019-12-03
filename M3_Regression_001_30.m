@@ -161,7 +161,7 @@ end
 
 %% ____________________
 %% COMMAND WINDOW OUTPUT
-fprintf("Pricing Function for Enzymes (Exponential):\nPrice(USD($)/lb) = %.3f * 10 ^ (%.3f * Km(uM))\nGoodness of fit for pricing function:\nSSE: %.3f  |  SST: %.3f  |  r^2: %.3f",b3,m3,SSE_final,SST,r2);
+fprintf("Pricing Function for Enzymes (Exponential):\nPrice(USD($)/lb) = %.3f * 10 ^ (%.3f * Km(uM))\n\nGoodness of fit for pricing function:\nSSE: %.3f  |  SST: %.3f  |  r^2: %.3f",b3,m3,SSE_final,SST,r2);
 %% ____________________
 %% ACADEMIC INTEGRITY STATEMENT
 % We have not used source code obtained from any other unauthorized
