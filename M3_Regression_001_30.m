@@ -101,6 +101,9 @@ if choose == 1 % if the linear function best fits the data
     function_output = sprintf("Model function:Price(USD($)/lb) = %.3f * Km(uM) + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b1,m1,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on;
+    %assign return parameters for the exec function
+    bf = b1;
+    mf = m1;
 
 elseif choose == 2 % if the power function best fits the data
     SST = sum((log10(price_measured) - mean(log10(price_measured))).^2); %calculate the SST value of the linearized data
@@ -115,7 +118,9 @@ elseif choose == 2 % if the power function best fits the data
     function_output = sprintf("Model function:Price(USD($)/lb) = %.3f * Km(uM) ^ (%.3f)\nSSE: %.3f, SST: %.3f, r^2: %.3f",b2,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on
-
+    %assign return parameters for the exec function
+    bf = b2;
+    mf = m2;
 
 elseif choose == 3 % if the exponential function best fits the data
     SST = sum((log10(price_measured) - mean(log10(price_measured))).^2); %calculate the SST value of the linearized data
@@ -130,7 +135,9 @@ elseif choose == 3 % if the exponential function best fits the data
     function_output = sprintf("Model function: Price(USD($)/lb) = %.3f * 10 ^(^%.3f ^* ^K^m^(^u^M^)^) \nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on
-
+    %assign return parameters for the exec function
+    bf = b3;
+    mf = m3;
 
 elseif choose == 4 % if the power logarithmic best fits the data
     SST = sum((price_measured - mean(price_measured)).^2); %calculate the SST value of the linearized data
@@ -145,7 +152,9 @@ elseif choose == 4 % if the power logarithmic best fits the data
     function_output = sprintf("Model function:Price(USD($)/lb)= %.3f * log10(Km(uM)) + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b4,m4,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output,'location', 'best')
     grid on
-
+    %assign return parameters for the exec function
+    bf = b4;
+    mf = m4;
 
 end
 
