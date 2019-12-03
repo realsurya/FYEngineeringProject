@@ -1,7 +1,7 @@
 function [bf, mf, SSE_final, SST] = M3_Regression_001_30
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ENGR 132 
-% Program Description 
+% ENGR 132
+% Program Description
 % The program finds a model for estimating price of enzyme according to
 % their Km value and output the estimate price.
 %
@@ -33,8 +33,7 @@ function [bf, mf, SSE_final, SST] = M3_Regression_001_30
 %% ____________________
 %% INITIALIZATION
 clc;clearvars;
-data = readmatrix('Data_NovelEnzymes_priceCatalog.csv');
-%data = csvread('Data_NovelEnzymes_priceCatalog.csv',2,0); %import the data from the csv file
+data = csvread('Data_NovelEnzymes_priceCatalog.csv',2,0); %import the data from the csv file
 price_measured = data(:,2); % separate the price from the data (USD($)/lbs)
 Km_measured = data(:,1); %separates the Km value from the data (uM)
 
@@ -73,12 +72,12 @@ predict3 = b3 .* 10 .^ (Km_measured .* m3); % calculate the predict value of pri
 SSE3 = sum((log10(price_measured) - linearized_predict3).^2); %calculate the SSE value of the model
 
 %% Linearize the data using logarithmic function
-coe4 = polyfit(log(Km_measured),price_measured,1); %find the coefficient of trendline of the model
+coe4 = polyfit(log10(Km_measured),price_measured,1); %find the coefficient of trendline of the model
 M4 = coe4(1);
 B4 = coe4(2);
 m4 = M4; %calculate the original model coefficient
 b4 = B4;
-linearized_predict4 = M4 .* log(Km_measured) + B4; %calculate the predict value of price using the linearized model
+linearized_predict4 = M4 .* log10(Km_measured) + B4; %calculate the predict value of price using the linearized model
 predict4 = m4 .* Km_measured + b4; % calculate the predict value of price using the original model
 SSE4 = sum((price_measured - linearized_predict4).^2); %calculate the SSE value of the model
 
@@ -89,7 +88,7 @@ SSE_final = min(SSE_value); %find the minimum SSE value which indicates the best
 choose = find(SSE_value == SSE_final); %find which model is the best
 
 figure(1)
-if choose == 1 % if the linear function best fits the data 
+if choose == 1 % if the linear function best fits the data
     SST = sum((price_measured - mean(price_measured)).^2); %calculate the SST value of the linearized data
     r2_1 = 1-(SSE1/SST); %calculate the r^2 value of the linearized data
     r2 = r2_1;
@@ -97,43 +96,43 @@ if choose == 1 % if the linear function best fits the data
     hold on;
     plot(Km_measured, predict1,'r-'); %plot the model
     title({'The Ezyme USD Price Per Pound of each';'Michaelis Constant from 157-350'})
-    xlabel('Michaelis Constant (uM)'); 
+    xlabel('Michaelis Constant (uM)');
     ylabel('Price (USD($)/lb)')
-    function_output = sprintf("Model function: %.3f * Km + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b1,m1,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
+    function_output = sprintf("Model function:Price(USD($)/lb) = %.3f * Km(uM) + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b1,m1,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on;
 
-elseif choose == 2 % if the power function best fits the data 
-    SST = sum((log(price_measured) - mean(log(price_measured))).^2); %calculate the SST value of the linearized data
+elseif choose == 2 % if the power function best fits the data
+    SST = sum((log10(price_measured) - mean(log10(price_measured))).^2); %calculate the SST value of the linearized data
     r2_2 = 1-(SSE2/SST); %calculate the r^2 value of the linearized data
     r2 = r2_2;
     plot(Km_measured, price_measured,'k.') %plot the original data
     hold on;
     plot(Km_measured, predict2,'r-'); %plot the model
     title({'The Ezyme USD Price Per Pound of each';'Michaelis Constant from 157-350'})
-    xlabel('Michaelis Constant (uM)'); 
+    xlabel('Michaelis Constant (uM)');
     ylabel('Price (USD($)/lb)')
-    function_output = sprintf("Model function: %.3f * Km ^ (%.3f)\nSSE: %.3f, SST: %.3f, r^2: %.3f",b2,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
+    function_output = sprintf("Model function:Price(USD($)/lb) = %.3f * Km(uM) ^ (%.3f)\nSSE: %.3f, SST: %.3f, r^2: %.3f",b2,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on
-    
 
-elseif choose == 3 % if the exponential function best fits the data 
-    SST = sum((log(price_measured) - mean(log(price_measured))).^2); %calculate the SST value of the linearized data
+
+elseif choose == 3 % if the exponential function best fits the data
+    SST = sum((log10(price_measured) - mean(log10(price_measured))).^2); %calculate the SST value of the linearized data
     r2_3 = 1-(SSE3/SST); %calculate the r^2 value of the linearized data
     r2 = r2_3;
     plot(Km_measured, price_measured,'k.') %plot the original data
     hold on;
     plot(Km_measured, predict3,'r-'); %plot the model
     title({'The Ezyme USD Price Per Pound of each';'Michaelis Constant from 157-350'})
-    xlabel('Michaelis Constant (uM)'); 
+    xlabel('Michaelis Constant (uM)');
     ylabel('Price (USD($)/lb)')
-    function_output = sprintf("Model function: %.3f * 10 ^ (%.3f * Km) \nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
+    function_output = sprintf("Model function: Price(USD($)/lb) = %.3f * 10 ^(^%.3f ^* ^K^m^(^u^M^)^) \nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output, 'location', 'best')
     grid on
 
 
-elseif choose == 4 % if the power logarithmic best fits the data 
+elseif choose == 4 % if the power logarithmic best fits the data
     SST = sum((price_measured - mean(price_measured)).^2); %calculate the SST value of the linearized data
     r2_4 = 1-(SSE4/SST); %calculate the r^2 value of the linearized data
     r2 = r2_4;
@@ -141,23 +140,22 @@ elseif choose == 4 % if the power logarithmic best fits the data
     hold on;
     plot(Km_measured, predict4,'r-'); %plot the model
     title({'The Ezyme USD Price Per Pound of each';'Michaelis Constant from 157-350'})
-    xlabel('Michaelis Constant (uM)'); 
+    xlabel('Michaelis Constant (uM)');
     ylabel('Price (USD($)/lb)')
-    function_output = sprintf("Model function: %.3f * log10(Km) + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b4,m4,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
+    function_output = sprintf("Model function:Price(USD($)/lb)= %.3f * log10(Km(uM)) + %.3f\nSSE: %.3f, SST: %.3f, r^2: %.3f",b4,m4,SSE_final,SST,r2); %display the funciton of the model also the SST,SSE and r^2 value
     legend('Novel Enzymes Price Catalog per Michaelis Constant', function_output,'location', 'best')
     grid on
 
 
 end
+
+
 %% ____________________
 %% COMMAND WINDOW OUTPUT
-fprintf("The chosen model is Exponential funciton: %.3f * 10 ^ (%.3f * Km)\nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2); 
+fprintf("The chosen model is Exponential funciton:Price(USD($)/lb) = %.3f * 10 ^ (%.3f * Km(uM))\nSSE: %.3f, SST: %.3f, r^2: %.3f",b3,m3,SSE_final,SST,r2);
 %% ____________________
 %% ACADEMIC INTEGRITY STATEMENT
 % We have not used source code obtained from any other unauthorized
 % source, either modified or unmodified. Neither have we provided
 % access to my code to another. The function we are submitting
 % is our own original work.
-
-
-
