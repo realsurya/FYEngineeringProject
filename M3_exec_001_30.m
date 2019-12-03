@@ -1,12 +1,15 @@
-function M3_exec_001_30()
+function M3_exec_001_30
 tic
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENGR 132
 % Program Description 
 % this executive funciton will use the algorithm to automatically calculate
 % vmax and km parameters for each enzyme using the v0 calculated values from 
-% the algorithm. Finally, the SSE values are calculated between the ideal 
+% the algorithm. Additionally, the SSE values are calculated between the ideal 
 % and expected Michales-menten curve in order to judge goodness of fit.
+% Finally, this function will price all the emzymes. The parameters and the
+% recommended price are printed to the command window in a neat manner.
+%
 % Note: changed or depreciated code is commented as such. New or unmodified 
 % code will remain uncommented.
 %
@@ -47,7 +50,7 @@ substrateData = xlsread(fileName, "B3:CW3");
 %% USE REGRESSION ALGORITHM TO GET ENZYME FUNCTION
 
 [b, m, SSE, SST] = M3_Regression_001_30; % call regression function to get function constants
-fprintf("\n\n");
+fprintf("\n\n"); % move to next line for aesthetics
 
 %% ____________________
 %% CALCULATIONS OF MICHALES-MENTEN CONSTANTS & PRICE ENZYMES

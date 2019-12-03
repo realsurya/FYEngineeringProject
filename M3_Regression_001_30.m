@@ -6,14 +6,14 @@ function [bf, mf, SSE_final, SST] = M3_Regression_001_30
 % their Km value and output the estimate price.
 %
 % Function Call
-% function [SSE_final, SST] = M3_Regression_001_30
+% [SSE_final, SST] = M3_Regression_001_30;
 %
 % Input Arguments
 % No input argument
 %
 % Output Arguments
-% bf: the intercept value gathered from the regression (unitless)
-% mf: the slope value gathered from the regression (unitless)
+% bf: the intercept value gathered from the regression (unitless - not in general form)
+% mf: the slope value gathered from the regression (unitless - not in general form)
 % SSE_final: the SSE value of the linearized data (unitless)
 % SST: the SST value of the linearized data (unitless)
 %

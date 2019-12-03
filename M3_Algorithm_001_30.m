@@ -5,6 +5,7 @@ function v0Vals = M3_Algorithm_001_30(enzNum);
 % This program will use a method similar to Algorithm 1 of M2 in order 
 % to calculate v0 constants for a given enzyme at 10 different substrate
 % concentrations.
+%
 % Note: changed or depreciated code is commented as such. New or unmodified 
 % code will remain uncommented.
 %

@@ -5,6 +5,7 @@ function [truncatedTime, smoothedData] = M3_Smooth_001_30(dataArray, timeArray, 
 % This user-defined functin will use the moving average method to smooth
 % an array of data and return the smoothed array back to the calling
 % function. Averages are done sequentially with the width given by user.
+%
 % Note: changed or depreciated code is commented as such. New or unmodified 
 % code will remain uncommented.
 %
