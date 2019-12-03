@@ -94,9 +94,9 @@ for enzymeNum = 1:5 % loop through all enzymes
     
     % display the values to the command window in a neat manner
     fprintf("----------------------------------------------\n");
-    fprintf("Parameters for Enzyme NextGen-%c:\n\nv0 values:", 'A' + (enzymeNum-1))
+    fprintf("Parameters for Enzyme NextGen-%c:\n\nv0 values (uM/min):", 'A' + (enzymeNum-1))
     disp(v0Vals);
-    fprintf("Vmax: %.4f  |  Km: %.4f  |  SSE: %.5f \n\nRecommended Price: $%.2f per lb\n", vMax, kM, SSE, recPrice);
+    fprintf("Vmax (uM/min): %.4f  |  Km (uM): %.4f  |  SSE: %.5f \n\nRecommended Price: $%.2f per lb\n", vMax, kM, SSE, recPrice);
     
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
     % Add params to the output variables [General Change - executive function no longer has parameters, this step is unnecessary]
