@@ -45,6 +45,7 @@ fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 %substrateData = readmatrix(fileName, "range", "B3:CW3"); [Change - xlsread is significantly faster than readatrix]
 % Category 2 - using xlsread for small data imports saves time as readmatrix is only good at large dataset imports 
 substrateData = xlsread(fileName, "B3:CW3");
+
 %% ____________________
 %% USE REGRESSION ALGORITHM TO GET ENZYME FUNCTION
 
@@ -54,7 +55,6 @@ fprintf("\n\n"); % move to next line for aesthetics
 %% ____________________
 %% CALCULATIONS OF MICHALES-MENTEN CONSTANTS & PRICE ENZYMES
 
-outputTable = ["Enzyme","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vo Values(μM/s)","Vmax(μM/s)","Km(μM)","Recommended Price（USD$)"];
 for enzymeNum = 1:5 % loop through all enzymes
     
     % use algorithm to find the v0 values
@@ -98,9 +98,6 @@ for enzymeNum = 1:5 % loop through all enzymes
     disp(v0Vals);
     fprintf("Vmax (uM/min): %.4f  |  Km (uM): %.4f  |  SSE: %.5f \n\nRecommended Price: $%.2f per lb\n", vMax, kM, SSE, recPrice);
     
-
-    outputTable = formatFunction(outputTable,enzymeNum,v0Vals,vMax,kM,recPrice);
-
     % --- ALL CODE BELOW IN THIS SECTION IS DEPRECIATED ---
     % Add params to the output variables [General Change - executive function no longer has parameters, this step is unnecessary]
     % vMaxArray = [vMaxArray, vMax];
