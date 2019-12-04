@@ -32,7 +32,6 @@ function [bf, mf, SSE_final, SST] = M3_Regression_001_30
 
 %% ____________________
 %% INITIALIZATION
-clc;clearvars;
 data = csvread('Data_NovelEnzymes_priceCatalog.csv',2,0); %import the data from the csv file
 price_measured = data(:,2); % separate the price from the data (USD($)/lbs)
 Km_measured = data(:,1); %separates the Km value from the data (uM)
