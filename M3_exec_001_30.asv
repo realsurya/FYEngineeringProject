@@ -43,11 +43,9 @@ fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 %initialize all the arrays for the table as needed
 enzNames = {'NextGen - A'; 'NextGen - B'; 'NextGen - C'; 'NextGen - D'; 'NextGen - E'}; % stores all enzyme names
-%tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'v0_Values', 'SSE'};
-tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'SSE'};
-
+tableColumnNames = {'Enzyme Name', 'vMax (uM/min)', 'Km (uM)', 'Recommended Price (USD)', 'v0 Values (uM/min)', 'SSE'};
 % populate table columns with zeros for speed
-%allV0 = zeros(5,10);
+allV0 = zeros(5,10);
 allVmax = zeros(5, 1);
 allKm = zeros(5, 1);
 allPrice = zeros(5, 1);
@@ -105,7 +103,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     recPrice = b * 10^(m * kM);
     
     % add all values to the table
-    %allV0(enzymeNum,:) = round(v0Vals, 3);
+    allV0(enzymeNum,:) = round(v0Vals, 3);
     allVmax(enzymeNum) = round(vMax, 3);
     allKm(enzymeNum) = round(kM, 3);
     allPrice(enzymeNum) = round(recPrice, 2);
@@ -156,11 +154,8 @@ end
 %% ____________________
 %% FORMATTED TEXT/FIGURE DISPLAYS
 
-%displayTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE);
-displayTable = table(enzNames, allVmax, allKm, allPrice, allSSE);
-displayTable.Properties.VariableNames = tableColumnNames;
-
-disp("Enzyme Parameters:");
+displayTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE, 'VariableNames', tableColumnNames);
+displayTable.Properties.VariableNames = 
 disp(displayTable);
 
 %% ____________________
