@@ -43,7 +43,8 @@ fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 %initialize all the arrays for the table as needed
 enzNames = {'NextGen - A'; 'NextGen - B'; 'NextGen - C'; 'NextGen - D'; 'NextGen - E'}; % stores all enzyme names
-tableColumnNames = {'Enzyme Name', 'vMax (uM/min)', 'Km (uM)', 'Recommended Price (USD)', 'v0 Values (uM/min)', 'SSE'};
+tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'v0', 'SSE'};
+
 % populate table columns with zeros for speed
 allV0 = zeros(5,10);
 allVmax = zeros(5, 1);
@@ -154,9 +155,13 @@ end
 %% ____________________
 %% FORMATTED TEXT/FIGURE DISPLAYS
 
-displayTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE, 'VariableNames', tableColumnNames);
-displayTable.Properties.VariableNames = 
-disp(displayTable);
+paramTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE);
+paramTable.Properties.VariableNames = tableColumnNames;
+paramTable = splitvars(paramTable);
+
+disp("Enzyme Parameters:");
+disp(paramTable);
+disp("Units:\nv0: uM/minute\nvmax:");
 
 %% ____________________
 %% COMMAND WINDOW OUTPUT

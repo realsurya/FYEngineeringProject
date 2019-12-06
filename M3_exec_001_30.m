@@ -4,7 +4,7 @@ tic
 % ENGR 132
 % Program Description 
 % this executive funciton will use the algorithm to automatically calculate
-% vmax and km parameters for each enzyme using the v0 calculated values from 
+% vmax (uM/min) and km (uM) parameters for each enzyme using the v0 calculated
 % the algorithm. Additionally, the SSE values are calculated between the ideal 
 % and expected Michales-menten curve in order to judge goodness of fit.
 % Finally, this function will price all the emzymes. The parameters and the
@@ -43,11 +43,10 @@ fileName = "Data_nextGen_KEtesting_allresults.csv"; % the name of the datafile
 
 %initialize all the arrays for the table as needed
 enzNames = {'NextGen - A'; 'NextGen - B'; 'NextGen - C'; 'NextGen - D'; 'NextGen - E'}; % stores all enzyme names
-%tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'v0_Values', 'SSE'};
-tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'SSE'};
+tableColumnNames = {'Name', 'vMax', 'Km', 'Recommended_Price', 'v0', 'SSE'};
 
 % populate table columns with zeros for speed
-%allV0 = zeros(5,10);
+allV0 = zeros(5,10);
 allVmax = zeros(5, 1);
 allKm = zeros(5, 1);
 allPrice = zeros(5, 1);
@@ -105,7 +104,7 @@ for enzymeNum = 1:5 % loop through all enzymes
     recPrice = b * 10^(m * kM);
     
     % add all values to the table
-    %allV0(enzymeNum,:) = round(v0Vals, 3);
+    allV0(enzymeNum,:) = round(v0Vals, 3);
     allVmax(enzymeNum) = round(vMax, 3);
     allKm(enzymeNum) = round(kM, 3);
     allPrice(enzymeNum) = round(recPrice, 2);
@@ -156,12 +155,14 @@ end
 %% ____________________
 %% FORMATTED TEXT/FIGURE DISPLAYS
 
-%displayTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE);
-displayTable = table(enzNames, allVmax, allKm, allPrice, allSSE);
-displayTable.Properties.VariableNames = tableColumnNames;
+%form table using all data series
+paramTable = table(enzNames, allVmax, allKm, allPrice, allV0, allSSE);
+paramTable.Properties.VariableNames = tableColumnNames;
+paramTable = splitvars(paramTable); % display the table to the command window
 
 disp("Enzyme Parameters:");
-disp(displayTable);
+disp(paramTable);
+fprintf("Units:\n V0 & Vmax: uM/minute\n Km: uM\n Price: USD/lb\n\n"); % diaplay units
 
 %% ____________________
 %% COMMAND WINDOW OUTPUT
